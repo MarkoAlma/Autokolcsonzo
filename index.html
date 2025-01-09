@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+    <script src="dol.js"></script>
+
+</head>
+<body>
+    <div class="keret">
+    <form action="">
+
+        <select id="tipus" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500">
+            <option value="gazdaságos">Gazdaságos</option>
+            <option value="családi">Családi</option>
+            <option value="luxus">Luxus</option>
+          </select>
+        <p>Szeretnél biztosítást?</p>
+
+        <div class="items-center text-center flex flex-row justify-around">
+            <span>
+            <input checked id="purple-radio" type="radio" value="true" name="biztositas" class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+            <label for="purple-radio" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Igen</label>
+            </span>
+            <span>
+            <input checked id="purple-radio" type="radio" value="false" name="biztositas" class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+            <label for="purple-radio" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Nem</label>
+        </span>
+            </div>
+        <p>Hány napra kölcsönöznél?</p>
+        
+<form class="max-w-sm mx-auto">
+    <input type="number" id="nap" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" required />
+</form>
+        <input type="button" class="btno" value="Számol" onclick="szamol()">
+        <div class="tarolo"></div>
+    </form>
+</div>
+    <script>
+        function szamol() {
+            const tipus = document.getElementById("tipus").value
+            const biztositas = document.querySelector("input[name='biztositas']:checked").value == "true"
+            const nap = +document.getElementById("nap").value
+            const rendeltAuto = {kolcsonzesiIdo: nap,autoTipus: tipus,extraBiztositas: biztositas,osszesKoltseg: 0,}
+            const koltseg = autokolcsonzes(rendeltAuto)
+            document.querySelector(".tarolo").innerHTML = "A kölcsönzés ára: <span class='szin'>"+koltseg.osszesKoltseg+" Ft</span>"
+        }
+    </script>
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+</body>
+</html>
